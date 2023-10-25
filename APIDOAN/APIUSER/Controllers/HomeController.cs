@@ -35,13 +35,13 @@ namespace APIUSER.Controllers
         {
             return await _doanBusiness.GetNewProduct(Soluong);
         }
-        [Route("get-by-id_LoaiSP")]
+        [Route("get-by-id_Loaidoan")]
         [HttpGet]
         public async Task<LoaidoanModel> GetById(int id)
         {
             return await _loaidoanBusiness.GetById(id);
         }
-        [Route("get-all_LoaiSP")]
+        [Route("get-all_Loaidoan")]
         [HttpGet]
         public async Task<List<LoaidoanModel>> GetAll()
         {
@@ -81,13 +81,13 @@ namespace APIUSER.Controllers
         {
             return await _doanBusiness.GetAllSlide();
         }
-        [Route("GetAllThongSoKT")]
+        [Route("GetAllThongtindoan")]
         [HttpGet]
         public async Task<List<ThongtindoanModel>> GetAllThongtindoan()
         {
             return await _thongtindoanBusiness.GetAllThongtindoan();
         }
-        [Route("SearchSp")]
+        [Route("Searchdoan")]
         [HttpPost]
         public ReponseModel Search([FromBody] ProductFilterRequestModel productFilterRequestModel)
         {

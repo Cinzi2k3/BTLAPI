@@ -20,21 +20,21 @@ namespace APIADMIN.Controllers
         }
 
 
-        [Route("Create_sp")]
+        [Route("Create_doan")]
         [HttpPost]
         public async Task<doanModel> Create([FromBody] doanModel model)
         {
             await _doanBusiness.Create(model);
             return model;
         }
-        [Route("Update_sp")]
+        [Route("Update_doan")]
         [HttpPut]
         public async Task<doanModel> Update([FromBody] doanModel model)
         {
             await _doanBusiness.Update(model);
             return model;
         }
-        [Route("Delete_sp")]
+        [Route("Delete_doan")]
         [HttpDelete]
         public async Task<bool> Delete(int id)
         {

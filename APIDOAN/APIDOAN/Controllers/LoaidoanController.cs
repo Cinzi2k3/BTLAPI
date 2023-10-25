@@ -15,14 +15,14 @@ namespace APIADMIN.Controllers
             _loaidoanBusiness = loaidoanBusiness;
         }
 
-        [Route("create-lsp")]
+        [Route("create-ldoan")]
         [HttpPost]
         public async Task<LoaidoanModel> Create([FromBody] LoaidoanModel model)
         {
             await _loaidoanBusiness.Create(model);
             return model;
         }
-        [Route("update-lsp")]
+        [Route("update-ldoan")]
         [HttpPut]
         public async Task<LoaidoanModel> Update([FromBody] LoaidoanModel model)
         {
@@ -30,7 +30,7 @@ namespace APIADMIN.Controllers
             return model;
         }
 
-        [Route("delete-lsp")]
+        [Route("delete-ldoan")]
         [HttpDelete]
         public async Task<bool> Delete(int id)
         {
