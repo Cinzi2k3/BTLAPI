@@ -17,7 +17,6 @@ namespace BLL
         {
             _res = res;
         }
-
         public async Task<bool> Create(doanModel model)
         {
             return await _res.Create(model);

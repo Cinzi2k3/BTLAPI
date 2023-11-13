@@ -1,0 +1,328 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\doman\\OneDrive\\Desktop\\BTL API\\APIDOAN - Copy\\APIUSER\\APIUSER.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\doman\\OneDrive\\Desktop\\BTL API\\APIDOAN - Copy\\APIUSER\\APIUSER.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\doman\\OneDrive\\Desktop\\BTL API\\APIDOAN - Copy\\APIUSER\\APIUSER.csproj",
+        "projectName": "APIUSER",
+        "projectPath": "C:\\Users\\doman\\OneDrive\\Desktop\\BTL API\\APIDOAN - Copy\\APIUSER\\APIUSER.csproj",
+        "packagesPath": "C:\\Users\\doman\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\doman\\OneDrive\\Desktop\\BTL API\\APIDOAN - Copy\\APIUSER\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\doman\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "C:\\Users\\doman\\OneDrive\\Desktop\\BTL API\\APIDOAN - Copy\\BLL\\BLL.csproj": {
+                "projectPath": "C:\\Users\\doman\\OneDrive\\Desktop\\BTL API\\APIDOAN - Copy\\BLL\\BLL.csproj"
+              },
+              "C:\\Users\\doman\\OneDrive\\Desktop\\BTL API\\APIDOAN - Copy\\DAL\\DAL.csproj": {
+                "projectPath": "C:\\Users\\doman\\OneDrive\\Desktop\\BTL API\\APIDOAN - Copy\\DAL\\DAL.csproj"
+              },
+              "C:\\Users\\doman\\OneDrive\\Desktop\\BTL API\\APIDOAN - Copy\\Models\\Models.csproj": {
+                "projectPath": "C:\\Users\\doman\\OneDrive\\Desktop\\BTL API\\APIDOAN - Copy\\Models\\Models.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Http.Features": {
+              "target": "Package",
+              "version": "[5.0.17, )"
+            },
+            "Microsoft.Extensions.Configuration.Abstractions": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.5.0, )"
+            },
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.8.5, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\doman\\OneDrive\\Desktop\\BTL API\\APIDOAN - Copy\\BLL\\BLL.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\doman\\OneDrive\\Desktop\\BTL API\\APIDOAN - Copy\\BLL\\BLL.csproj",
+        "projectName": "BLL",
+        "projectPath": "C:\\Users\\doman\\OneDrive\\Desktop\\BTL API\\APIDOAN - Copy\\BLL\\BLL.csproj",
+        "packagesPath": "C:\\Users\\doman\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\doman\\OneDrive\\Desktop\\BTL API\\APIDOAN - Copy\\BLL\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\doman\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "C:\\Users\\doman\\OneDrive\\Desktop\\BTL API\\APIDOAN - Copy\\DAL\\DAL.csproj": {
+                "projectPath": "C:\\Users\\doman\\OneDrive\\Desktop\\BTL API\\APIDOAN - Copy\\DAL\\DAL.csproj"
+              },
+              "C:\\Users\\doman\\OneDrive\\Desktop\\BTL API\\APIDOAN - Copy\\Models\\Models.csproj": {
+                "projectPath": "C:\\Users\\doman\\OneDrive\\Desktop\\BTL API\\APIDOAN - Copy\\Models\\Models.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Http.Features": {
+              "target": "Package",
+              "version": "[5.0.17, )"
+            },
+            "Microsoft.Extensions.Configuration.Abstractions": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
+            },
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.8.5, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\doman\\OneDrive\\Desktop\\BTL API\\APIDOAN - Copy\\DAL\\DAL.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\doman\\OneDrive\\Desktop\\BTL API\\APIDOAN - Copy\\DAL\\DAL.csproj",
+        "projectName": "DAL",
+        "projectPath": "C:\\Users\\doman\\OneDrive\\Desktop\\BTL API\\APIDOAN - Copy\\DAL\\DAL.csproj",
+        "packagesPath": "C:\\Users\\doman\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\doman\\OneDrive\\Desktop\\BTL API\\APIDOAN - Copy\\DAL\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\doman\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "C:\\Users\\doman\\OneDrive\\Desktop\\BTL API\\APIDOAN - Copy\\Models\\Models.csproj": {
+                "projectPath": "C:\\Users\\doman\\OneDrive\\Desktop\\BTL API\\APIDOAN - Copy\\Models\\Models.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Http.Features": {
+              "target": "Package",
+              "version": "[5.0.17, )"
+            },
+            "Microsoft.Extensions.Configuration.Abstractions": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
+            },
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.8.5, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\doman\\OneDrive\\Desktop\\BTL API\\APIDOAN - Copy\\Models\\Models.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\doman\\OneDrive\\Desktop\\BTL API\\APIDOAN - Copy\\Models\\Models.csproj",
+        "projectName": "Models",
+        "projectPath": "C:\\Users\\doman\\OneDrive\\Desktop\\BTL API\\APIDOAN - Copy\\Models\\Models.csproj",
+        "packagesPath": "C:\\Users\\doman\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\doman\\OneDrive\\Desktop\\BTL API\\APIDOAN - Copy\\Models\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\doman\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Http.Features": {
+              "target": "Package",
+              "version": "[5.0.17, )"
+            },
+            "Microsoft.Extensions.Configuration.Abstractions": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
+            },
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.8.5, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

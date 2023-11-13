@@ -5,9 +5,7 @@ use BANDOAN1
 create table Loaidoan(
 MaLoai int Identity(1,1) not null primary key,
 TenLoai nvarchar(50) not null
-
 );
-
 create table doan(
 Madoan int IDENTITY(1,1) NOT NULL primary key,
 MaLoai int,
@@ -18,6 +16,8 @@ Mota ntext,
 NgayTao datetime,
 FOREIGN KEY (MaLoai) REFERENCES Loaidoan (MaLoai) ON DELETE CASCADE ON UPDATE CASCADE,
 );
+select * from doan
+select * from NhaCungCap
 
 create table KhachHang(
 MaKhachHang int identity(1,1) not null primary key,
@@ -193,7 +193,7 @@ FOREIGN KEY (MaKho) REFERENCES Kho (MaKho) ON DELETE CASCADE ON UPDATE CASCADE,
 INSERT INTO Loaidoan (TenLoai) VALUES (N'Đồ ăn mặn');
 INSERT INTO Loaidoan (TenLoai) VALUES (N'Đồ ăn ngọt');
 INSERT INTO Loaidoan (TenLoai) VALUES (N'Đồ ăn chín');
-
+select * from Loaidoan
 
 INSERT INTO doan (MaLoai, Tendoan, Anh, SoLuong, Mota, NgayTao) 
 VALUES (1, N'Cánh gà rán', 'canhga.jpg', 100, N'Đồ ăn mặn ngon', GETDATE());
@@ -411,6 +411,7 @@ as
 	end;
 go
 
+
 CREATE PROCEDURE doan_update 
 	
 (@Madoan int,
@@ -419,7 +420,6 @@ CREATE PROCEDURE doan_update
 @Anh varchar(1000),
 @SoLuong int,
 @Mota ntext
-
 )
 as 
 	begin
@@ -447,6 +447,65 @@ as
 	end;
 go
 
+---nhà cung cấp
+CREATE PROCEDURE sp_nhacc_get_by_id
+    @MaNhaCungCap nvarchar(10)
+AS
+BEGIN
+    SET NOCOUNT ON;
+    
+    SELECT MaNhaCungCap,TenNhaCungCap, DiaChi,SoDienThoai
+    FROM NhaCungCap
+    WHERE MaNhaCungCap = @MaNhaCungCap;
+END;
+go
+
+
+CREATE PROCEDURE sp_nhacc_create
+    @MaNhaCungCap nvarchar(10),
+    @TenNhaCungCap nvarchar(30),
+    @DiaChi nvarchar(50),
+    @SoDienThoai nvarchar(50)
+AS
+BEGIN
+    INSERT INTO NhaCungCap(MaNhaCungCap, TenNhaCungCap, DiaChi, SoDienThoai)
+    VALUES (@MaNhaCungCap, @TenNhaCungCap,@DiaChi, @SoDienThoai);
+END;
+go
+-- Chạy stored procedure với các giá trị thử nghiệm
+EXEC sp_nhacc_create
+    @MaNhaCungCap = NULL,
+    @TenNhaCungCap = 'Nhà Cung Cấp 1',
+    @DiaChi = 'Địa chỉ nhà cung cấp 1',
+    @SoDienThoai = '0123456789';
+
+
+CREATE PROCEDURE sp_nhacc_update
+    @MaNhaCungCap nvarchar(10),
+    @TenNhaCungCap nvarchar(30),
+    @DiaChi nvarchar(50),
+    @SoDienThoai nvarchar(50)
+AS
+BEGIN
+    UPDATE NhaCungCap
+    SET TenNhaCungCap = @TenNhaCungCap,
+        DiaChi = @DiaChi,
+        SoDienThoai = @SoDienThoai
+    WHERE MaNhaCungCap = @MaNhaCungCap;
+END;
+go
+
+CREATE PROCEDURE sp_nhacc_search
+    @MaNhaCungCap nvarchar(10) = NULL,
+    @TenNhaCungCap nvarchar(30) = NULL
+AS
+BEGIN
+    SELECT *
+    FROM NhaCungCap
+    WHERE (@MaNhaCungCap IS NULL OR MaNhaCungCap = @MaNhaCungCap)
+    AND (@TenNhaCungCap IS NULL OR TenNhaCungCap LIKE '%' + @TenNhaCungCap + '%');
+END;
+go
 
 -- sản phẩm mới về
 create PROCEDURE doan_moinhat
@@ -617,5 +676,8 @@ GO
 
 
 doan_search @page_index = 1, @page_size = 10,@FromPrice = 9000000, @ToPrice = 15000000
+go
 doan_search @page_index = 1, @page_size = 10,@TenLoai='đồ ăn mặn'
+go
 doan_search @page_index = 1, @page_size = 10,@Tendoan='cánh gà rán '
+go

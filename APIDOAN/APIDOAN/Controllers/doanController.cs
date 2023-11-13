@@ -1,4 +1,5 @@
-﻿using BLL.Interfaces;
+﻿using BLL;
+using BLL.Interfaces;
 using DAL.Interface;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -48,8 +49,17 @@ namespace APIADMIN.Controllers
             var fileName = _toolRepository.SaveFile(file);
             return Ok(new { FileName = fileName.Result });
         }
-
-
-
+        [HttpGet]
+        [Route("GetAllProduct")]
+        public IActionResult GetAllProduct()
+        {
+            return Ok(_doanBusiness.GetAllProduct());
+        }
+        [HttpGet]
+        [Route("GetByIdProduct/{id}")]
+        public IActionResult GetProductById(int id)
+        {
+            return Ok(_doanBusiness.GetByIdProduct(id));
+        }
     }
 }

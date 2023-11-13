@@ -23,7 +23,7 @@ namespace DAL
             try
             {
                 var result = _dbHelper.ExecuteScalarSProcedureWithTransaction(out msgError, "doan_create",
-                "@MaLoai", model.loaidoan.MaLoai,
+                "Maloai",model.loaidoan.MaLoai,
                 "@Tendoan", model.Tendoan,
                 "@Anh", model.Anh,
                 "@SoLuong", model.SoLuong,
