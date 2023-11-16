@@ -1,6 +1,6 @@
-﻿create database BANDOAN1
+﻿create database BANDOAN2
 
-use BANDOAN1
+use BANDOAN2
 
 create table Loaidoan(
 MaLoai int Identity(1,1) not null primary key,
@@ -38,7 +38,7 @@ Anh nvarchar(500),
 );
 
 create table NhaCungCap(
-MaNhaCungCap int identity(1,1) not null primary key,
+MaNhaCungCap int primary key not null,
 TenNhaCungCap nvarchar(200),
 DiaChi nvarchar(200),
 SoDienThoai varchar(20),
@@ -69,7 +69,7 @@ Noidung nvarchar(1000),
 
 create table HoaDonNhap(
 MaHoaDonNhap int identity(1,1) not null primary key,
-MaNhaCungCap int,
+MaNhaCungCap int ,
 NgayNhap datetime, 
 ThanhTien float,
 
@@ -216,12 +216,13 @@ VALUES (N'Bảo Anh', '092532321245', '89 Hưng Yên', 'buithibaoanh@gmail.com',
 INSERT INTO NhanVien (TenNhanVien, SoDienThoai, DiaChi, Email, Anh) 
 VALUES (N'Đỗ Hồng Việt', '0925323435', '89 Hưng Yên', 'dohongviet@gmail.com', 'nhanvien3.jpg');
 
-INSERT INTO NhaCungCap (TenNhaCungCap, DiaChi, SoDienThoai) 
-VALUES ('MiXi Food', N'Hà Nội', '0343363223');
-INSERT INTO NhaCungCap (TenNhaCungCap, DiaChi, SoDienThoai) 
-VALUES ('Foody', N'Thái Bình', '075327436');
-INSERT INTO NhaCungCap (TenNhaCungCap, DiaChi, SoDienThoai) 
-VALUES ('Koobie', N'Hàn Quốc', '0383782653');
+INSERT INTO NhaCungCap (MaNhaCungCap, TenNhaCungCap, DiaChi, SoDienThoai) 
+VALUES (1,'MiXi Food', N'Hà Nội', '0343363223');
+INSERT INTO NhaCungCap (MaNhaCungCap,TenNhaCungCap, DiaChi, SoDienThoai) 
+VALUES (2,'Foody', N'Thái Bình', '075327436');
+INSERT INTO NhaCungCap (MaNhaCungCap,TenNhaCungCap, DiaChi, SoDienThoai) 
+VALUES (3,'Koobie', N'Hàn Quốc', '0383782653');
+select * from NhaCungCap
 
 INSERT INTO Slide (Anh, Link) VALUES ('path_to_image1.jpg', 'link_to_slide1');
 INSERT INTO Slide (Anh, Link) VALUES ('path_to_image2.jpg', 'link_to_slide2');
@@ -393,8 +394,12 @@ as
 		where MaLoai = @MaLoai
 	end;
 go
+exec lsp_delete
+@MaLoai=7;
 
---sản phẩm
+select * from Loaidoan
+
+--đồ ăn
 
 CREATE PROCEDURE doan_create 
 	
@@ -446,66 +451,85 @@ as
 		where Madoan = @Madoan
 	end;
 go
-
+select * from doan
 ---nhà cung cấp
-CREATE PROCEDURE sp_nhacc_get_by_id
-    @MaNhaCungCap nvarchar(10)
-AS
-BEGIN
-    SET NOCOUNT ON;
-    
-    SELECT MaNhaCungCap,TenNhaCungCap, DiaChi,SoDienThoai
-    FROM NhaCungCap
-    WHERE MaNhaCungCap = @MaNhaCungCap;
-END;
+CREATE PROCEDURE Ncc_create 
+	
+(@MaNhaCungCap int,
+@TenNhaCungCap nvarchar(200),
+@DiaChi nvarchar (200),
+@SoDienThoai varchar (20)
+)
+as 
+	begin
+		Insert into NhaCungCap(MaNhaCungCap, TenNhaCungCap,DiaChi,SoDienThoai)
+		values (@MaNhaCungCap, @TenNhaCungCap, @DiaChi, @SoDienThoai);
+	end;
+go
+
+exec Ncc_create
+@MaNhaCungCap=3,
+@TenNhaCungCap='ABC',
+@DiaChi='Hung yen',
+@SoDienThoai=019399312;
+
+select * from NhaCungCap
+select * from doan
+select * from Loaidoan
+
+
+CREATE PROCEDURE Ncc_update 
+(@MaNhaCungCap int,
+@TenNhaCungCap nvarchar(200),
+@DiaChi nvarchar (200),
+@SoDienThoai varchar (20)
+)
+as 
+	begin
+		Update  NhaCungCap
+	  set  
+	  MaNhaCungCap = IIf(@MaNhaCungCap is Null, MaNhaCungCap, @MaNhaCungCap),
+	  TenNhaCungCap = @TenNhaCungCap,
+	  DiaChi = IIf(@DiaChi is Null, DiaChi, @DiaChi),
+	  SoDienThoai = IIf(@SoDienThoai is Null, SoDienThoai, @SoDienThoai)
+	  Where MaNhaCungCap = @MaNhaCungCap
+      
+	  SELECT '';
+    END;
 go
 
 
-CREATE PROCEDURE sp_nhacc_create
-    @MaNhaCungCap nvarchar(10),
-    @TenNhaCungCap nvarchar(30),
-    @DiaChi nvarchar(50),
-    @SoDienThoai nvarchar(50)
-AS
-BEGIN
-    INSERT INTO NhaCungCap(MaNhaCungCap, TenNhaCungCap, DiaChi, SoDienThoai)
-    VALUES (@MaNhaCungCap, @TenNhaCungCap,@DiaChi, @SoDienThoai);
-END;
-go
--- Chạy stored procedure với các giá trị thử nghiệm
-EXEC sp_nhacc_create
-    @MaNhaCungCap = NULL,
-    @TenNhaCungCap = 'Nhà Cung Cấp 1',
-    @DiaChi = 'Địa chỉ nhà cung cấp 1',
-    @SoDienThoai = '0123456789';
 
-
-CREATE PROCEDURE sp_nhacc_update
-    @MaNhaCungCap nvarchar(10),
-    @TenNhaCungCap nvarchar(30),
-    @DiaChi nvarchar(50),
-    @SoDienThoai nvarchar(50)
-AS
-BEGIN
-    UPDATE NhaCungCap
-    SET TenNhaCungCap = @TenNhaCungCap,
-        DiaChi = @DiaChi,
-        SoDienThoai = @SoDienThoai
-    WHERE MaNhaCungCap = @MaNhaCungCap;
-END;
+CREATE PROCEDURE Ncc_delete
+(@MaNhaCungCap int)
+as
+	begin
+		Delete from NhaCungCap
+		where MaNhaCungCap = @MaNhaCungCap
+	end;
 go
+EXEC Ncc_delete
+@MaNhaCungCap=2;
+select * from doan
+select * from NhaCungCap
 
-CREATE PROCEDURE sp_nhacc_search
-    @MaNhaCungCap nvarchar(10) = NULL,
-    @TenNhaCungCap nvarchar(30) = NULL
-AS
-BEGIN
-    SELECT *
-    FROM NhaCungCap
-    WHERE (@MaNhaCungCap IS NULL OR MaNhaCungCap = @MaNhaCungCap)
-    AND (@TenNhaCungCap IS NULL OR TenNhaCungCap LIKE '%' + @TenNhaCungCap + '%');
-END;
+create procedure Ncc_getall
+as
+	begin
+		select * from NhaCungCap
+	end;
 go
+Ncc_getall
+
+create procedure [dbo].[Ncc_get-by-id](@MaNhaCungCap int)
+as
+	begin
+		select * from NhaCungCap
+		Where MaNhaCungCap = @MaNhaCungCap
+	end;
+go
+exec [Ncc_get-by-id]
+@MaNhaCungCap=1;
 
 -- sản phẩm mới về
 create PROCEDURE doan_moinhat

@@ -1,4 +1,5 @@
-﻿using BLL.Interfaces;
+﻿using BLL;
+using BLL.Interfaces;
 using DAL.Interface;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -12,42 +13,45 @@ namespace APIADMIN.Controllers
     [ApiController]
     public class NccController : ControllerBase
     {
-        private readonly INccBusiness _NccBusiness;
-        private readonly IToolRepository _toolRepository;
-        public NccController(INccBusiness NccBusiness, IToolRepository toolRepository)
+        private INccBusiness _NccBusiness;
+        public NccController(INccBusiness NccBusiness)
         {
             _NccBusiness = NccBusiness;
-            _toolRepository = toolRepository;
+            
         }
 
 
-        [Route("Create_sp")]
+        [Route("Ncc_create")]
         [HttpPost]
         public async Task<NccModel> Create([FromBody] NccModel model)
         {
             await _NccBusiness.Create(model);
             return model;
         }
-        [Route("Update_sp")]
+        [Route("Ncc_update")]
         [HttpPut]
         public async Task<NccModel> Update([FromBody] NccModel model)
         {
             await _NccBusiness.Update(model);
             return model;
         }
-        [Route("Delete_sp")]
+        [Route("Ncc_delete")]
         [HttpDelete]
         public async Task<bool> Delete(int id)
         {
             return await _NccBusiness.Delete(id);
         }
-        [Route("upload")]
-        [HttpPost]
-        public async Task<IActionResult> UploadFile(IFormFile file)
+        [HttpGet]
+        [Route("GetAll")]
+        public IActionResult GetAll()
         {
-
-            var fileName = _toolRepository.SaveFile(file);
-            return Ok(new { FileName = fileName.Result });
+            return Ok(_NccBusiness.GetAll());
+        }
+        [HttpGet]
+        [Route("GetById/{id}")]
+        public IActionResult GetById(int id)
+        {
+            return Ok(_NccBusiness.GetById(id));
         }
 
 

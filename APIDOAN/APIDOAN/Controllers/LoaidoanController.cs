@@ -1,4 +1,5 @@
-﻿using BLL.Interfaces;
+﻿using BLL;
+using BLL.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Models;
@@ -35,6 +36,18 @@ namespace APIADMIN.Controllers
         public async Task<bool> Delete(int id)
         {
             return await _loaidoanBusiness.Delete(id);
+        }
+        [HttpGet]
+        [Route("GetAllProduct")]
+        public IActionResult GetAllProduct()
+        {
+            return Ok(_loaidoanBusiness.GetAll());
+        }
+        [HttpGet]
+        [Route("GetByIdProduct/{id}")]
+        public IActionResult GetProductById(int id)
+        {
+            return Ok(_loaidoanBusiness.GetById(id));
         }
     }
 }
