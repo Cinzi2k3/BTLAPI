@@ -21,6 +21,10 @@ builder.Services.AddTransient<IdoanBusiness, doanBusiness>();
 builder.Services.AddTransient<INccRepository, NccRepository>();
 builder.Services.AddTransient<INccBusiness, NccBusiness>();
 
+builder.Services.AddTransient<INVRepository, NVRepository>();
+builder.Services.AddTransient<INVBusiness, NVBusiness>();
+
+
 builder.Services.AddTransient<IToolRepository, Tools>();
 
 builder.Services.AddControllers();

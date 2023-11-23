@@ -13,11 +13,12 @@ namespace APIADMIN.Controllers
     [ApiController]
     public class NccController : ControllerBase
     {
-        private INccBusiness _NccBusiness;
-        public NccController(INccBusiness NccBusiness)
+        private readonly INccBusiness _NccBusiness;
+        private readonly IToolRepository _toolRepository;
+        public NccController(INccBusiness NccBusiness, IToolRepository toolRepository)
         {
             _NccBusiness = NccBusiness;
-            
+            _toolRepository = toolRepository;
         }
 
 
@@ -40,6 +41,14 @@ namespace APIADMIN.Controllers
         public async Task<bool> Delete(int id)
         {
             return await _NccBusiness.Delete(id);
+        }
+        [Route("upload")]
+        [HttpPost]
+        public async Task<IActionResult> UploadFile(IFormFile file)
+        {
+
+            var fileName = _toolRepository.SaveFile(file);
+            return Ok(new { FileName = fileName.Result });
         }
         [HttpGet]
         [Route("GetAll")]

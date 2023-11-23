@@ -25,7 +25,6 @@ TenKhachHang nvarchar(200),
 SoDienThoai varchar(20),
 DiaChi nvarchar(500),
 Email varchar(50),
-Anh varchar(1000),
 );
 
 create table NhanVien(
@@ -34,8 +33,9 @@ TenNhanVien nvarchar(100),
 SoDienThoai varchar(20),
 DiaChi nvarchar(100), 
 Email varchar(50),
-Anh nvarchar(500),
 );
+select * from NhanVien
+
 
 create table NhaCungCap(
 MaNhaCungCap int primary key not null,
@@ -43,7 +43,7 @@ TenNhaCungCap nvarchar(200),
 DiaChi nvarchar(200),
 SoDienThoai varchar(20),
 );
-
+SELECT * FROM NhaCungCap
 create table Slide(
 MaSlide int identity(1,1) not null primary key,
 Anh varchar(500),
@@ -92,8 +92,9 @@ MaKhachHang int,
 NgayBan datetime,
 ThanhTien float,
 FOREIGN KEY (MaKhachHang) REFERENCES KhachHang (MaKhachHang) ON DELETE CASCADE ON UPDATE CASCADE,
-
 );
+
+
 create table ChiTietHoaDonBan(
 MaChiTietHoaDonBan int identity(1,1) not null primary key,
 MaHoaDonBan int,
@@ -201,21 +202,23 @@ INSERT INTO doan (MaLoai, Tendoan, Anh, SoLuong, Mota, NgayTao)
 VALUES (2, N'Bánh ngọt', 'banhngot.jpg', 150, N'Đồ ăn ngọt ngon', GETDATE());
 INSERT INTO doan (MaLoai, Tendoan, Anh, SoLuong, Mota, NgayTao) 
 VALUES (3, N'Bánh cay', 'banhcay.jpg', 200, N'Đồ ăn cay', GETDATE());
+select * from doan
 
+INSERT INTO KhachHang (TenKhachHang, SoDienThoai, DiaChi, Email) 
+VALUES (N'Đỗ Mạnh Cường', '0123456789', N'13 Đường Trần Hưng Đạo', 'domanhcuong@gmail.com');
 INSERT INTO KhachHang (TenKhachHang, SoDienThoai, DiaChi, Email, Anh) 
-VALUES (N'Đỗ Mạnh Cường', '0123456789', N'13 Đường Trần Hưng Đạo', 'domanhcuong@gmail.com', 'khachhang1.jpg');
+VALUES (N'Đặng Nhật Duy', '0987654321', N'23 Đường Cầu Giaáy', 'dangnhatduyb@gmail.com');
 INSERT INTO KhachHang (TenKhachHang, SoDienThoai, DiaChi, Email, Anh) 
-VALUES (N'Đặng Nhật Duy', '0987654321', N'23 Đường Cầu Giaáy', 'dangnhatduyb@gmail.com', 'khachhang2.jpg');
-INSERT INTO KhachHang (TenKhachHang, SoDienThoai, DiaChi, Email, Anh) 
-VALUES (N'Đỗ Như Thành', '0242141522', N'45 Đường Nguyễn Huệ', 'donhuthanh@gmail.com', 'khachhang3.jpg');
+VALUES (N'Đỗ Như Thành', '0242141522', N'45 Đường Nguyễn Huệ', 'donhuthanh@gmail.com');
+select * from KhachHang
 
-INSERT INTO NhanVien (TenNhanVien, SoDienThoai, DiaChi, Email, Anh) 
-VALUES (N'Lò Văn Hạnh', '01253252235', '27 Điện Biên', 'lovanhanh@gmail.com', 'nhanvien1.jpg');
-INSERT INTO NhanVien (TenNhanVien, SoDienThoai, DiaChi, Email, Anh) 
-VALUES (N'Bảo Anh', '092532321245', '89 Hưng Yên', 'buithibaoanh@gmail.com', 'nhanvien2.jpg');
-INSERT INTO NhanVien (TenNhanVien, SoDienThoai, DiaChi, Email, Anh) 
-VALUES (N'Đỗ Hồng Việt', '0925323435', '89 Hưng Yên', 'dohongviet@gmail.com', 'nhanvien3.jpg');
-
+INSERT INTO NhanVien (TenNhanVien, SoDienThoai, DiaChi, Email) 
+VALUES (N'Lò Văn Hạnh', '01253252235', '27 Điện Biên', 'lovanhanh@gmail.com');
+INSERT INTO NhanVien (TenNhanVien, SoDienThoai, DiaChi, Email) 
+VALUES (N'Bảo Anh', '092532321245', '89 Hưng Yên', 'buithibaoanh@gmail.com');
+INSERT INTO NhanVien (TenNhanVien, SoDienThoai, DiaChi, Email) 
+VALUES (N'Đỗ Hồng Việt', '0925323435', '89 Hưng Yên', 'dohongviet@gmail.com');
+select * from NhanVien
 INSERT INTO NhaCungCap (MaNhaCungCap, TenNhaCungCap, DiaChi, SoDienThoai) 
 VALUES (1,'MiXi Food', N'Hà Nội', '0343363223');
 INSERT INTO NhaCungCap (MaNhaCungCap,TenNhaCungCap, DiaChi, SoDienThoai) 
@@ -530,6 +533,73 @@ as
 go
 exec [Ncc_get-by-id]
 @MaNhaCungCap=1;
+
+--Nhân viên
+CREATE PROCEDURE NV_create 
+	
+(
+@TenNhanVien nvarchar(100),
+@SoDienThoai varchar(20),
+@DiaChi nvarchar(100), 
+@Email varchar(50)
+)
+as 
+	begin
+		Insert into NhanVien( TenNhanVien,DiaChi,SoDienThoai,Email)
+		values (@TenNhanVien, @DiaChi, @SoDienThoai,@Email);
+	end;
+go
+select * from NhanVien
+
+
+
+
+CREATE PROCEDURE NV_update 
+(@MaNhanVien int,
+@TenNhanVien nvarchar(100),
+@SoDienThoai varchar(20),
+@DiaChi nvarchar(100), 
+@Email varchar(50)
+)
+as 
+	begin
+		Update  NhanVien
+	  set  
+	  TenNhanVien = @TenNhanVien,
+	  DiaChi = IIf(@DiaChi is Null, DiaChi, @DiaChi),
+	  SoDienThoai = IIf(@SoDienThoai is Null, SoDienThoai, @SoDienThoai),
+	  Email = IIF(@Email is Null, Email, @Email)
+	  Where MaNhanVien = @MaNhanVien
+      
+	  SELECT '';
+    END;
+go
+
+
+
+CREATE PROCEDURE NV_delete
+(@MaNhanVien int)
+as
+	begin
+		Delete from NhanVien
+		where MaNhanVien= @MaNhanVien
+	end;
+go
+create procedure NV_getall
+as
+	begin
+		select * from NhanVien
+	end;
+go
+NV_getall
+
+create procedure [dbo].[NV_get-by-id](@MaNhanVien int)
+as
+	begin
+		select * from NhanVien
+		Where MaNhanVien = @MaNhanVien
+	end;
+go
 
 -- sản phẩm mới về
 create PROCEDURE doan_moinhat
