@@ -6,6 +6,7 @@ create table Loaidoan(
 MaLoai int Identity(1,1) not null primary key,
 TenLoai nvarchar(50) not null
 );
+
 create table doan(
 Madoan int IDENTITY(1,1) NOT NULL primary key,
 MaLoai int,
@@ -16,6 +17,8 @@ Mota ntext,
 NgayTao datetime,
 FOREIGN KEY (MaLoai) REFERENCES Loaidoan (MaLoai) ON DELETE CASCADE ON UPDATE CASCADE,
 );
+select * from Loaidoan
+drop table doan
 select * from doan
 select * from NhaCungCap
 
